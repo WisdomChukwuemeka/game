@@ -108,8 +108,10 @@ const deposit = () => {
 }
 
 const withdraw = () => {
-    if(withdrawAmount > balance  >= 0 && withdrawAmount <= 0){
-        alert("Not enough funds")
+    if(withdrawAmount <= 0){
+        alert("Enter a valid number")
+    }else if(balance < withdrawAmount){
+        alert("Balance too low")
     }else{
         setBalance(balance - withdrawAmount)
         setAmount(withdrawAmount * 1 + amount)
