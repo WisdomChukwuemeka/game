@@ -43,6 +43,18 @@
     width: 18rem;
     height: 15rem;
 }
+.game-container{
+    margin: 0 0 -20rem 0;
+    .fit{
+        display: flex;
+        justify-content: center;
+        background-color: darkblue;
+        width: 30rem;
+        height: 60vh;
+        border-radius: 10px;
+        margin: 1.5rem 0 0 0;
+    }
+}
 }
 
 @media (max-width: 912px){
@@ -74,9 +86,19 @@
     }
     .data{
         width: 18rem;
+    }  
+    .game-container{
+        margin: 0 0 -11rem 0;
+        .fit{
+            display: flex;
+            justify-content: center;
+            background-color: darkblue;
+            width: 30rem;
+            height: 60vh;
+            border-radius: 10px;
+            margin: 1.5rem 0 0 0;
+        }
     }
-
-    
 }
 
 @media (max-width: 768px){
@@ -108,6 +130,18 @@
     }
     .data{
         width: 18rem;
+    }
+    .game-container{
+        margin: 0 0 -11rem 0;
+        .fit{
+            display: flex;
+            justify-content: center;
+            background-color: darkblue;
+            width: 30rem;
+            height: 85vh;
+            border-radius: 10px;
+            margin: 1.5rem 0 0 0;
+        }
     }
 
 }
@@ -245,4 +279,5 @@
     .data{
         width: 18rem;
     }
+    
 }

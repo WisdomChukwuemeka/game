@@ -1,5 +1,7 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect} from "react"
 import "bootstrap-icons/font/bootstrap-icons.css"
+import sound from "../src/sound/music.mp3"
+
 
 export const Start = () => {
 const [randomnumber, setRandomnumber] = useState(0)
@@ -14,10 +16,24 @@ const [depositAmount, setDepositAmount]  = useState(0)
 const [status, setStatus] = useState(<i class="bi bi-dice-3"></i>)
 const [won, setWon] = useState(0)
 const [lost, setLost] = useState(0)
+const [audio, setAudio] = useState(null)
 
 useEffect(() => {
     generateNumbers()
 },[])
+
+const Play = () => {
+    const newAudio = new Audio(sound);
+    newAudio.volume = 0.5;
+    newAudio.play();
+    setAudio(newAudio); 
+};
+const Stop = () => {
+    if (audio) {
+        audio.pause()
+        audio.currentTime = 0
+    }
+};
 
 const generateNumbers = () => {
     const number = Math.floor(Math.random() * 3) + 1;
@@ -33,11 +49,8 @@ const Guessbutton = (event) => {
     const stakenumber = Number(stake)
    
     
-    if (stakenumber == 0 < stakenumber){
-        if(balance == 0){
-            alert("Insufficient funds")
-            return
-        }
+    if(balance == 0){
+        alert("Insufficient funds")
     }
     
     if (stakenumber < 0 < balance){
@@ -60,23 +73,26 @@ const Guessbutton = (event) => {
                 setBalance(balance - stakenumber)
                 setMessage("Lost")
             setLost(lost + 1)
-            setStatus(<i class="bi bi-emoji-frown"></i>)
-            }
+                if(lost <= 10){
+                setStatus(<i class="bi bi-emoji-surprise"></i>)
+                }else if(lost > 10 && lost <= 20){
+                    setStatus(<i class="bi bi-emoji-frown"></i>)
+                }else{
+                setStatus(<i class="bi bi-emoji-angry"></i>)
+                }
             
         }
-    }
-    else if(stakenumber > 0 > balance){
+    } else if(stakenumber > 0 > balance){
         setBalance(balance)
     }
-    
-    
     generateNumbers()
 
 }
+}
 
 const deposit = () => {
-    if(depositAmount > amount){
-        alert("Insufficient fund")
+    if(depositAmount > amount >= 0 && depositAmount <= 0){
+        alert("Not enough funds")
     }
     else{
         if (balance == 0){
@@ -89,8 +105,8 @@ const deposit = () => {
 }
 
 const withdraw = () => {
-    if(withdrawAmount > balance){
-        alert("Amount higher than your lugame balance")
+    if(withdrawAmount > balance  >= 0 && withdrawAmount <= 0){
+        alert("Not enough funds")
     }else{
         setBalance(balance - withdrawAmount)
         setAmount(withdrawAmount * 1 + amount)
@@ -104,6 +120,15 @@ const withdraw = () => {
 
     return(
         <>
+        <div className="music">
+            <div>
+                <button onClick={Play}><i class="bi bi-music-note-beamed"></i></button>
+            </div>
+            <div>
+                <button onClick={Stop}><i class="bi bi-mic-mute"></i></button>
+            </div>
+        </div>
+        <audio src={sound}></audio>
             <div className="game-container">
                <div className="game-sub-one">
                     <div className="fit">
