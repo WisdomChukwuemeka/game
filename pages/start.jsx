@@ -91,7 +91,7 @@ const Guessbutton = (event) => {
 }
 
 const deposit = () => {
-    if(depositAmount > amount >= 0 && depositAmount <= 0){
+    if(depositAmount > amount >= 0 && depositAmount >= 0){
         alert("Not enough funds")
     }
     else{
