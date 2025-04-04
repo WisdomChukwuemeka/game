@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react"
 import "bootstrap-icons/font/bootstrap-icons.css"
-import music from "../src/music/music.mp3"
 
 export const Start = () => {
 const [randomnumber, setRandomnumber] = useState(0)
