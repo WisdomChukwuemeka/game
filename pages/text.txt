@@ -1,0 +1,76 @@
+import { useState, useEffect } from "react";
+
+export const Start = () => {
+    const [randomnumber, setRandomnumber] = useState(0);
+    const [guess, setGuess] = useState("");
+    const [balance, setBalance] = useState(10000);
+    const [stake, setStake] = useState(0);
+    const [score, setScore] = useState(0);
+    const [message, setMessage] = useState("");
+
+    useEffect(() => {
+        generateNumbers();
+    }, []);
+
+    const generateNumbers = () => {
+        const number = Math.floor(Math.random() * 5) + 1;
+        setRandomnumber(number);
+    };
+
+    const Guessbutton = (e) => {
+        e.preventDefault(); // Prevent the default form submission behavior
+
+        const numericStake = Number(stake); // Convert stake to a number
+
+        if (balance <= 0) {
+            setMessage("Insufficient balance!");
+            return;
+        }
+
+        if (guess == randomnumber) {
+            setScore(score + 1);
+            setBalance(balance + numericStake * 2);
+            setMessage("Won");
+        } else {
+            setScore(score - 1);
+            setBalance(balance - numericStake);
+            setMessage("Failed");
+        }
+
+        // Generate a new random number for the next round
+        generateNumbers();
+    };
+
+    return (
+        <>
+            <div>
+                <div>
+                    <h1>
+                        Balance: ${balance}
+                    </h1>
+                    <p>{randomnumber}</p>
+
+                    <form onSubmit={Guessbutton}>
+                        <div>
+                            <input
+                                type="number"
+                                value={guess}
+                                onChange={(e) => setGuess(e.target.value)}
+                                placeholder="Guess number"
+                            />
+                            <input
+                                type="number"
+                                value={stake}
+                                onChange={(e) => setStake(e.target.value)}
+                                placeholder="Place your bet"
+                            />
+                            <button type="submit">Submit</button>
+                        </div>
+                    </form>
+                    <h2>{message}</h2>
+                    <h2>{score}</h2>
+                </div>
+            </div>
+        </>
+    );
+};

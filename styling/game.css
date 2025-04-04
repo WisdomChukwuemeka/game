@@ -1,0 +1,79 @@
+.game-container{
+    background-color: white;
+    color: white;
+    height: 100vh;
+    padding: 4rem 0 0 0;
+}
+.game-sub-one{
+    display: flex;
+    justify-content: center;
+    
+}
+.fit{
+    display: flex;
+    justify-content: center;
+    background-color: darkblue;
+    width: 30rem;
+    height: 90vh;
+    border-radius: 10px;
+}
+.adjust{
+    margin-top: 3rem;
+}
+.bank-balance{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+}
+.bank-balance h1{
+    font-size: 1rem;
+}
+.won-failed{
+    display: flex;
+    flex-direction: column;
+    line-height: 0.1rem;
+    margin-left: 13rem;
+}
+.status{
+    line-height: 0rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.input-field{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input-field input, .input-field button{
+    width: 19rem;
+    height: 4vh;
+}
+.input-field button{
+    background-color: rgb(49, 5, 5);
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-size: 1rem;
+}
+
+.deposit-withdraw{
+    text-align: center;
+    margin: 2rem 0 2rem 0;
+    line-height: 2rem;
+}
+.deposit, .withdraw{
+    color: white;
+    border: none;
+    border-radius: 2rem;
+}
+.deposit{
+    background-color: darkblue;
+    
+
+}
+.withdraw{
+    background-color: darkred;
+}

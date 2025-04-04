@@ -1,0 +1,53 @@
+.layout{
+    background-color: lightgray;
+    height: 10vh;
+    position: relative;
+    padding: 5px 1rem 0 1rem;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header span{
+    color: darkblue;
+}
+nav{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+ul{
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    font-size: 1.2rem;
+}
+ul li{
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    color: black;
+    text-decoration: none;
+}
+
+ul li:hover{
+    color: darkblue;
+    transform: scale(1.1);
+}
+
+.menu-div ul{
+    position: absolute;
+    right: 1rem;
+    top: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: lightgray;
+    width: 5rem;
+    height: 20vh;
+    border-radius: 10px;
+}
+.title span{
+    color: darkred;
+}
