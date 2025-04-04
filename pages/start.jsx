@@ -22,11 +22,15 @@ useEffect(() => {
     generateNumbers()
 },[])
 
+
+
+
 const Play = () => {
     const newAudio = new Audio(sound);
     newAudio.volume = 0.5;
     newAudio.play();
     setAudio(newAudio); 
+    
 };
 const Stop = () => {
     if (audio) {
@@ -91,15 +95,14 @@ const Guessbutton = (event) => {
 }
 
 const deposit = () => {
-    if(depositAmount > amount >= 0 && depositAmount >= 0){
-        alert("Not enough funds")
-    }
-    else{
-        if (balance == 0){
-            setAmount(amount - depositAmount)
+    if(depositAmount < 0 && depositAmount > amount){
+        alert("Not enough funds, try again later")
+    }else if(depositAmount <= amount && depositAmount > 0){
+        setAmount(amount - depositAmount)
         setBalance(depositAmount * 1 + balance)
         alert(`Your Guess game has been credited with: $${depositAmount}`)
-        } 
+    }else{
+        alert("Insufficient funds")
     }
     setDepositAmount("")
 }
