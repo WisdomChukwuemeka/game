@@ -14,7 +14,6 @@ const [depositAmount, setDepositAmount]  = useState(0)
 const [status, setStatus] = useState(<i class="bi bi-dice-3"></i>)
 const [won, setWon] = useState(0)
 const [lost, setLost] = useState(0)
-const [emoji, setEmoji] = useState()
 
 useEffect(() => {
     generateNumbers()
@@ -51,7 +50,6 @@ const Guessbutton = (event) => {
                 setStatus(<i class="bi bi-trophy"></i>)
                 setScore(score + 1)
                 setWon(won + 1)
-                setEmoji(<i class="bi bi-emoji-smile"></i>)
             }
         }
         else if(guess != randomnumber){
@@ -125,7 +123,7 @@ const withdraw = () => {
                         <div className="status">
                         <div className="status-icon">
                         <h1>{status}</h1>
-                        <h4>{emoji}</h4>
+                        
                         </div>
                         <p>{message}</p>
                         </div>
