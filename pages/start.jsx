@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import "bootstrap-icons/font/bootstrap-icons.css"
+import music from "../src/music/music.mp3"
+
 export const Start = () => {
 const [randomnumber, setRandomnumber] = useState(0)
 const [guess, setGuess] = useState("")
@@ -13,6 +15,7 @@ const [depositAmount, setDepositAmount]  = useState(0)
 const [status, setStatus] = useState("")
 const [won, setWon] = useState(0)
 const [lost, setLost] = useState(0)
+
 
 useEffect(() => {
     generateNumbers()
@@ -32,48 +35,68 @@ const Guessbutton = (event) => {
     const stakenumber = Number(stake)
    
     
-    if (balance == 0){
-        alert("Insufficient funds")
-        return
+    if (stakenumber == 0 < stakenumber){
+        if(balance == 0){
+            alert("Insufficient funds")
+            return
+        }
     }
-    if (guess == parseFloat){
-        alert("You have inputed a float number.")
+    
+    if (stakenumber < 0 < balance){
+        if (guess == randomnumber){
+            if(stakenumber > balance){
+                setBalance(balance)
+            } else{
+                setBalance(balance + stakenumber * 1)
+                setMessage("Won")
+                setStatus(<i class="bi bi-trophy"></i>)
+                setScore(score + 1)
+                setWon(won + 1)
+            }
+        }
+        else if(guess != randomnumber){
+            if(stakenumber > balance){
+                setBalance(balance)
+                
+            } else{
+                setBalance(balance - stakenumber)
+                setMessage("Lost")
+            setLost(lost + 1)
+            setStatus(<i class="bi bi-sign-stop"></i>)
+            }
+            
+        }
     }
-    if (guess == randomnumber){
-        setScore(score + 1)
-        setWon(won + 1)
-        setBalance(balance + stakenumber * 1)
-        setMessage("Won")
-        setStatus(<i class="bi bi-trophy"></i>)
-
+    else if(stakenumber > 0 > balance){
+        setBalance(balance)
     }
-    else if(guess != randomnumber){
-        setBalance(balance - stakenumber)
-        setMessage("Lost")
-        setLost(lost + 1)
-        setStatus(<i class="bi bi-sign-stop"></i>)
-    }
+    
+    
     generateNumbers()
 
 }
 
 const deposit = () => {
-    if (balance == 0){
-      setAmount(amount - depositAmount)
-      setBalance(depositAmount * 1 + balance)
-      alert(`Your Guess game has been credited with: $${depositAmount}`)
+    if(depositAmount > amount){
+        alert("Insufficient fund")
+    }
+    else{
+        if (balance == 0){
+            setAmount(amount - depositAmount)
+        setBalance(depositAmount * 1 + balance)
+        alert(`Your Guess game has been credited with: $${depositAmount}`)
+        } 
     }
     setDepositAmount("")
 }
 
 const withdraw = () => {
-    if (balance > 0){
+    if(withdrawAmount > balance){
+        alert("Amount higher than your lugame balance")
+    }else{
         setBalance(balance - withdrawAmount)
         setAmount(withdrawAmount * 1 + amount)
         alert("Successful.")
-    }
-    else{
-        alert("Your balance is too low.")
     }
     setWithdrawAmount("")
 }
@@ -107,7 +130,7 @@ const withdraw = () => {
                         
                         <form onSubmit={Guessbutton}> 
                         <div className="input-field">
-                            <input type="number" value={guess} onChange={(e) => setGuess(e.target.value)} placeholder="Guess number"/>
+                            <input type="number" value={guess} onChange={(e) => setGuess(e.target.value)} placeholder="Guess number between 1-3"/>
                             <input type="number" value={stake} onChange={(e) => setStake(e.target.value)} placeholder="Stake amount" />
                             <button type="submit">Submit</button>
                         </div>
